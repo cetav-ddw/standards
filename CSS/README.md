@@ -16,17 +16,57 @@ Tener una forma estándar de escribir CSS significa que, el código siempre se v
 
 El código feo sienta un mal precedente, por el contrario, el código que se ve limpio se siente limpio. Queremos un ambiente agradable para trabajar, lo que fomenta en otros miembros del equipo mantener el nivel de limpieza que encontraron.
 
-####  Para strings usar comillas dobles (" ")
+## Uso de whitespace
+
+### Indentación
+Indentamos con **4 espacios**. Puede configurar su editor para que lo realice de manera automática.
 
 ```css
 /* Mal */
 selector {
-	font-family: 'Goudy Bookletter 1911', sans-serif;
+  propiedad: valor;
 }
 
 /* Bien */
 selector {
-	font-family: "Goudy Bookletter 1911", sans-serif;
+    propiedad: valor;
+}
+```
+
+### Espacios
+Un espacio antes { (*bracket que abre*).
+
+```css
+/* Mal */
+selector{
+
+/* Bien */
+selector {
+```
+
+Cierre en su su propia línea } (*bracket que cierra*).
+
+```css
+/* Mal */
+selector{ }
+
+/* Bien */
+selector {
+    
+}
+```
+
+#### strings comillas dobles (" ")
+
+```css
+/* Mal */
+selector {
+    font-family: 'Goudy Bookletter 1911', sans-serif;
+}
+
+/* Bien */
+selector {
+    font-family: "Goudy Bookletter 1911", sans-serif;
 }
 ```
 
