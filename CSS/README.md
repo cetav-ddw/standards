@@ -8,7 +8,17 @@ Para reducir al mínimo la fricción de nuestro CSS, los desarrolladores del CET
 
 Este es *a living document*, lo cual significa que el contenido cambiará tanto como sea necesario, nuestro objetivo es actualizar esto como evoluciona el conocimiento, las buenas prácticas y promover una mayor coherencia en nuestro propio CSS.
 
+## Tabla de Contenidos
+
+* [Agradecimientos](#agradecimientos)
+* [Sintaxis y formato](#sintaxis-y-formato)
+* [Orden y especificidad](#orden-y-especificidad)
+* [Uso de whitespace](#uso-de-whitespace)
+* [Comentarios](#comentarios)
+* [Performance](#performance)
+
 ## Agradecimientos
+
 
 ## Sintaxis y formato
 Tener una forma estándar de escribir CSS significa que, el código siempre se verá y se sentirá familiar para todos los miembros del equipo.
