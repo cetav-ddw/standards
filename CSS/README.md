@@ -23,7 +23,18 @@ Este es *a living document*, lo cual significa que el contenido cambiará tanto 
 ## Sintaxis y formato
 Tener una forma estándar de escribir CSS significa que, el código siempre se verá y se sentirá familiar para todos los miembros del equipo.
 
-El código *feo* sienta un mal precedente, por el contrario, el código que se ve limpio se siente limpio. Queremos un ambiente agradable para trabajar, lo que fomenta en otros miembros del equipo mantener el nivel de limpieza que encontraron.
+El código *feo* y desordenado sienta un mal precedente, por el contrario, el código que se ve limpio se siente limpio. Queremos un ambiente agradable para trabajar, lo que fomenta en otros miembros del equipo mantener el nivel de limpieza que encontraron.
+
+A manera general queremos:
+
+* Indentar con 4 espacios.
+* Un espacio entre reglas.
+* Un espacio antes del bracket de apertura (**{**), un espacio despues de dos puntos (**:**), punto y coma (**;**) y comas (**,**).
+* Bracket de cierre (**}**) en su propia linea.
+* Cada declaración en una linea.
+* Ordenar alfabeticamente.
+* Uso de minisculas y nombres en ingles.
+* Cambio de palabra separado por un guion (**-**).
 
 #### Anatomía de una regla:
 
@@ -42,6 +53,9 @@ Las reglas se deben escribir de tal manera que, utilicemos la Cascada y la Heren
 
 * Escribir los bloques de reglas en un orden específico: reset, third party, elementos, patrones, objetos, componentes, etc **No** escribir las reglas segun el orden en que los elementos se muestran en la pagina.
 * En la medida de lo posible, las reglas subsecuentes deben heredar, nunca sobreescribir.
+* Etiquetas - sólo darle *estilo* a etiquetas globales.
+* Clases - siempre es preferible darle *estilo* a selectores de tipo clase (.nombre-selector).
+* IDs - evitar darle *estilo*  a IDs. Incluso si el ID ya existe en la página, es mejor añadir una clase y darle *estilo*.
 * Evitar sobrecalificar selectores, esto incrementa la especificidad, limita la reutilizacion y son menos eficientes (mas trabajo para el browser)
 * Evitar anidar innecesariamente.
 * Evitar *encadenar* selectores.
