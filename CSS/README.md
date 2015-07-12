@@ -6,7 +6,7 @@ Para reducir al mínimo la fricción de nuestro CSS, los desarrolladores del CET
 * Formato del CSS.
 * Arquitectura de nuestro CSS, incluyendo objetivos, errores a evitar y buenas prácticas.
 
-Este es *a living document*, lo cual significa que el contenido cambiará tanto como sea necesario, nuestro objetivo es actualizar esto como evoluciona el conocimiento, las buenas prácticas y promover una mayor coherencia en nuestro propio CSS.
+Este es *a living document*, lo cual significa que, el contenido cambiará tanto como sea necesario, nuestro objetivo es actualizar esto como evoluciona el conocimiento, las buenas prácticas y promover una mayor coherencia en nuestro propio CSS.
 
 ## Tabla de Contenidos
 
@@ -301,6 +301,3 @@ selector {
 ## Comentarios
 
 ## Performance
-
-
-
