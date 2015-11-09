@@ -6,7 +6,7 @@ Para reducir al mínimo la fricción de nuestro CSS, los desarrolladores del CET
 * Formato del CSS.
 * Arquitectura de nuestro CSS, incluyendo objetivos, errores a evitar y buenas prácticas.
 
-Este es *a living document*, lo cual significa que, el contenido cambiará tanto como sea necesario, nuestro objetivo es actualizar esto como evoluciona el conocimiento, las buenas prácticas y promover una mayor coherencia en nuestro propio CSS.
+Este es *a living document*, lo cual significa que, el contenido cambiará tanto como sea necesario, nuestro objetivo es actualizar este documento seg&uacute;n evoluciona el conocimiento y las buenas prácticas, tanto en clase como en la industria.
 
 ## Tabla de Contenidos
 
@@ -18,7 +18,6 @@ Este es *a living document*, lo cual significa que, el contenido cambiará tanto
 * [Performance](#performance)
 
 ## Agradecimientos
-
 
 ## Sintaxis y formato
 Tener una forma estándar de escribir CSS significa que, el código siempre se verá y se sentirá familiar para todos los miembros del equipo.
@@ -36,7 +35,7 @@ A manera general queremos:
 * Uso de minisculas y nombres en ingles.
 * Cambio de palabra separado por un guion (**-**).
 
-#### Anatomía de una regla:
+#### Anatom&iacute;a de una regla:
 
 ```css
 selector {
@@ -46,19 +45,44 @@ selector {
 [<--Regla o ruleset--->]
 ```
 
+### Convenciones para nombrar
+
+#### Principios:
+
+Cualquier nombre que se utiliza directamente en el HTML (class/id) deben tener en cuenta [estos principios](https://github.com/stubbornella/oocss/wiki/FAQ):
+
+* *Claridad* - comportamiento esperado / estilo debe ser inmediatamente obvio.
+* *Semántica* - lo que un objeto es importa más que como se ve.
+* *Genérico* - el nombre debe ser aplicar para la mayoría de los sitios. Nombres demasiado específicos reducen el número de casos de uso o causa que clases semánticas sean utilizados en una forma no semántica.
+* *Brevedad* - cada byte cuenta, así que mantenga nombres tan cortos como sea posible, pero siempre y cuando sea necesario. Nombres más de 5-7 caracteres deben ser abreviados.
+
+Para separar palabras usamos gui&oacute;n en minuscula (*-*). Esto aplica para: clases, id, mixins, funciones, variables y colores:
+
+```css
+/* Mal */
+.main_top { 
+    color: #FFC20E; 
+}
+
+/* Bien */
+.main-top { 
+    color: #ffc20e; 
+}
+```
+
 ## Orden y especificidad
 Las reglas se deben escribir de tal manera que, utilicemos la Cascada y la Herencia, y siempre tratar de que la Especificidad este a un nivel similar (en la medida de lo posible).
 
 #### especificidad
 
-* Escribir los bloques de reglas en un orden específico: reset, third party, elementos, patrones, objetos, componentes, etc **No** escribir las reglas segun el orden en que los elementos se muestran en la pagina.
+* Escribir los bloques de reglas en un orden específico: reset, third party, elementos, patrones, objetos, componentes, etc **No** escribir las reglas seg&uacute;n el orden en que los elementos se muestran en la p&aacute;gina.
 * En la medida de lo posible, las reglas subsecuentes deben heredar, nunca sobreescribir.
-* Etiquetas - sólo darle *estilo* a etiquetas globales.
+* Etiquetas - s&oacute;lo darle *estilo* a etiquetas globales.
 * Clases - siempre es preferible darle *estilo* a selectores de tipo clase (.nombre-selector).
-* IDs - evitar darle *estilo*  a IDs. Incluso si el ID ya existe en la página, es mejor añadir una clase y darle *estilo*.
-* Evitar sobrecalificar selectores, esto incrementa la especificidad, limita la reutilizacion y son menos eficientes (mas trabajo para el browser)
+* IDs - evitar darle *estilo* a IDs. Incluso si el ID ya existe en la página, es mejor añadir una clase y darle *estilo*.
+* Evitar sobrecalificar selectores, esto incrementa la especificidad, limita la reutilizacion y son menos eficientes (m&aacute;s trabajo para el browser)
 * Evitar anidar innecesariamente.
-* Evitar *encadenar* selectores.
+* Evitar *encadenar* selectores. `.nav-item.expanded`
 
 ```css
 /* Evitar sobrecalificar selectores */
@@ -245,6 +269,8 @@ selector {
 selector {
     color: red; font-family: Helvetica, Arial, sans-serif;
 }
+```
+
 
 #### nueva línea
 Después de cada regla incluimos nueva línea
@@ -265,6 +291,42 @@ selector {
 
 selector {
     propiedad: valor;
+}
+```
+
+Cuando hay bloques anidados, solo incluimos nueva línea antes del primer bloque
+
+```css
+/* Mal */
+selector {
+    propiedad: valor;
+
+    selector {
+        propiedad: valor;
+    }
+
+    selector {
+        propiedad: valor;
+    }
+
+    selector {
+        propiedad: valor;
+    }
+}
+
+/* Bien */
+selector {
+    propiedad: valor;
+
+    selector {
+        propiedad: valor;
+    }
+    selector {
+        propiedad: valor;
+    }
+    selector {
+        propiedad: valor;
+    }
 }
 ```
 
