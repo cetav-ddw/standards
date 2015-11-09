@@ -19,6 +19,7 @@ Utilizamos [Sass](http://sass-lang.com/) como preprocesador (sintaxis SCSS).
 * [Comentarios](#comentarios)
 * [Performance](#performance)
 * [Agradecimientos](#agradecimientos)
+* [Lectura adicional](#lectura-adicional)
 
 ## Sintaxis y formato
 Tener una forma est&aacute;ndar de escribir CSS significa que, el c&oacute;digo siempre se ver&aacute; y se sentir&aacute; familiar para todos los miembros del equipo.
@@ -27,14 +28,12 @@ El código *feo* y desordenado sienta un mal precedente, por el contrario, el c&
 
 A manera general queremos:
 
-* Indentar con **4** espacios. Los espacios son la &uacute;nica forma de garantizar que el c&oacute;digo *rendera* igual en el entorno de cualquier persona.
-* Un espacio entre reglas.
-* Un espacio antes del bracket de apertura (**{**), un espacio despu&eacute;s de dos puntos (**:**), punto y coma (**;**) y comas (**,**).
-* Bracket de cierre (**}**) en su propia l&iacute;nea.
-* Cada declaraci&oacute;n en una linea.
+* Indentar con **4** espacios, no tabs.
+* Uso significativo de espacio en blanco.
 * Ordenar alfabeticamente.
-* Uso de min&uacute;sculas y nombres en ingles.
+* Uso de min&uacute;sculas y nombres en ingl&eacute;s.
 * Cambio de palabra separado por un gui&oacute;n (**-**).
+* Columnas con ancho no mayor a 80 caracteres.
 
 #### Anatom&iacute;a de una regla:
 
@@ -81,7 +80,7 @@ Siempre usamos min&uacute;scula, y el cambio de palabra separado por gui&oacute;
 
 #### Abreviaciones:
 
-Cada byte cuenta, as&iacute; que, mantenga nombres tan cortos como sea posible. Como regla general, nombres de m&aacute;s de 5-7 caracteres deben ser abreviados, sin embargo, no sacrificamos la **claridad** por brevedad. Algunas ideas de abrevaciones:
+Cada byte cuenta, as&iacute; que, mantenga nombres tan cortos como sea posible. Como regla general, nombres de m&aacute;s de 5-7 caracteres deben ser abreviados, sin embargo, no sacrificamos la **claridad** por brevedad. Algunas ideas de abreviaciones:
 
 * configuration => config
 * introduction => intro
@@ -147,7 +146,7 @@ p.intro {
 #### orden
 Ordenar de forma alfanumérica, a excepción de donde se puede romper la Cascada.
 
-* En la hoja de estilos: pseudo-selectores (:after, :active, :before, :hover, :link, :visited), etiquetas antes que clases y antes que ids - orden natual de la especificidad.
+* En la hoja de estilos: pseudo-selectores (:after, :active, :before, :hover, :link, :visited), etiquetas antes que clases y antes que ids - orden natural de la especificidad.
 * Reglas, propiedades y selectores se deben ordenar alfabeticamente.
 
 **Etiquetas y clases:**
@@ -331,7 +330,7 @@ Ordenamos parent selectos (inicia con &, tales como &.classname &oacute; &:hover
 ## Uso de whitespace
 
 #### indentación
-Indentamos con **4 espacios**. Puede configurar su editor para que lo realice de manera autom&aacute;tica.
+Indentamos con **4 espacios**, no tabs. Puede configurar su editor para que lo realice de manera autom&aacute;tica. Los espacios son la &uacute;nica forma de garantizar que el c&oacute;digo *renderea* igual en el entorno de cualquier persona.
 
 ```css
 // Mal
@@ -398,7 +397,6 @@ selector {
 }
 ```
 
-
 #### nueva línea
 Después de cada regla incluimos nueva línea
 
@@ -421,7 +419,7 @@ selector {
 }
 ```
 
-Cuando hay bloques anidados, solo incluimos nueva línea antes del primer bloque
+Cuando hay bloques anidados, s&oacute;lo incluimos nueva línea antes del primer bloque
 
 ```css
 // Mal
@@ -488,12 +486,16 @@ selector {
 ```
 
 ## Comentarios
+El código es escrito y mantenido por personas. Asegúrese de que su código sea descriptivo, este bien comentado, y sea accesible por otros. Un código bien comentado transmite contexto o propósito. No se limite a reiterar un nombre de componente o clase.
+
+Asegúrese de escribir en oraciones completas para comentarios más grandes y frases concisas para las notas generales.
+
 Usamos `//` para bloques de comentarios en lugar de `/* */`. Siempre dejamos un espacio antes del comentario.
 
 ```css
 // Mal
 selector {
-    width: 100% !important; /* Comentario explicando porque el uso de !import */
+    width: 100% !important; /* Sobreescribo */
 }
 
 // Bien
@@ -516,5 +518,11 @@ Debido a que, los comentarios se eliminan de las hojas de estilo compiladas, no 
   * `background-position: 0 0;` en lugar de `background-position: 0% 0%;`
 * Siempre que aplique, utilice shorthand, `margin: 20px 0;` en lugar de `margin: 20px 0 20px 0;`
 * Pero evite utilziar shorthand cuando es innecesario, `margin-bottom: 20px;` en lugar de `margin: 0 0 20px;`
+* Use shorthand para valores hex cuando sea posible, ejemplo, `#fff` en lugar de `#ffffff`
 
 ## Agradecimientos
+
+## Lectura adicional
+
+* [CSS Style Guides - CSS-Tricks ](https://css-tricks.com/css-style-guides/)
+* [Writing efficient CSS - MDN ](https://developer.mozilla.org/en-US/docs/Web/Guide/CSS/Writing_efficient_CSS)
