@@ -3,7 +3,7 @@ JavaScript Coding Standards
 
 ## <a name='TOC'>Tabla de Contenido</a>
   
-  1. [Puntuaci&oacute;n](#puntuacion)
+  1. [Puntuación](#puntuacion)
   1. [Tipos](#types)
   1. [Objetos](#objects)
   1. [Arreglos](#arrays)
@@ -22,43 +22,41 @@ JavaScript Coding Standards
   1. [Recursos](#resources)
   1. [Licencia](#license)
 
-[Basado en Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript/tree/es5-deprecated/es5)
+[Basado en Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 
 ## Sintaxis y formato
 
 A manera general queremos:
 
-* Utilizamos ECMAScript 5.1 (ES5) - [Annotated ECMAScript 5.1](https://es5.github.io/)
+* Utilizamos ECMAScript 6.0 (ES6) - [ECMAScript® 2015 Language Specification](https://www.ecma-international.org/ecma-262/6.0/index.html)
 * Indentar con **2** espacios, no tabs.
 * Deja un espacio antes de la llave de apertura `{`.
 * Usar llaves con todos los bloques de múltiples líneas (```if``` , ```function```).
 * Un espacio antes del paréntesis de apertura en las sentencias de control (```if```, ```while```, etc.).
 * Bloques de muchas líneas con ```if``` y ```else```, poner el ```else``` en la misma línea que el ```if```.
-* No espacio entre el keyword function o el nombrede la funcion y el primer parentesis (`function() {}`)
-* Separar a los operadores con espacios. `var x = y + 5;`
+* No espacio entre el keyword function o el nombre de la funcion y el primer parentesis (`function() {}`)
+* Separar a los operadores con espacios. `const x = y + 5;`
 * Deja una línea en blanco luego de los bloques y antes de la siguiente sentencia.
-* Ser descriptivo con nombres de variables, m&eacute;todos, funciones, etc.
+* Ser descriptivo con nombres de variables, métodos, funciones, etc.
 * camelCase para nombrar objetos, funciones e instancias, ejem: `thisIsMyObject`, `thisIsMyFunction`
 * PascalCase cuando nombre constructores o clases.
-* Un guión bajo (_) adelante de la variable cuando se nombre propiedades privadas, ejem: `var __firstName`
-* Cuando se guarde una referencia a `this` usa `_this`
-* No usar [palabras reservadas](http://es5.github.io/#x7.6.1) para nombres de propiedades, funciones o variables.
+* No usar [palabras reservadas](https://www.ecma-international.org/ecma-262/6.0/index.html#sec-reserved-words) para nombres de propiedades, funciones o variables.
 * Nombre sus funciones. Esto será de ayuda en caso de errores.
 
-## <a name='puntuacion'>Puntuacion: comas, puntos y coma</a>
+## <a name='puntuacion'>Puntuación: comas, puntos y coma</a>
 
   - **No** usar comas al inicio de línea:
 
     ```javascript
     // mal
-    var story = [
+    const story = [
         once
       , upon
       , aTime
     ];
 
     // bien
-    var story = [
+    const story = [
       once,
       upon,
       aTime
@@ -70,20 +68,13 @@ A manera general queremos:
     ```javascript
     // mal
     (function() {
-      var name = 'Skywalker'
+      const name = 'Skywalker'
       return name
     })()
 
     // bien
     (function() {
-      var name = 'Skywalker';
-      return name;
-    })();
-
-    // super bien (evita que la funcion se vuelva un argumento
-    // cuando dos archivos con IIFEs sean concatenados)
-    ;(function() {
-      var name = 'Skywalker';
+      const name = 'Skywalker';
       return name;
     })();
     ```
@@ -100,10 +91,10 @@ A manera general queremos:
 
 
     ```javascript
-    var foo = 1;
-    var bar = foo;
+    let foo = 1;
+    let bar = foo;
 
-    bar = 9;
+    let = 9;
 
     console.log(foo, bar); // => 1, 9
     ```
@@ -180,15 +171,6 @@ A manera general queremos:
     itemsCopy = items.slice();
     ```
 
-  - Para convertir un objeto ["array-like" (similar a un arreglo)](https://www.inkling.com/read/javascript-definitive-guide-david-flanagan-6th/chapter-7/array-like-objects) a un arreglo, usa Array#slice.
-
-    ```javascript
-    function trigger() {
-      var args = Array.prototype.slice.call(arguments);
-      ...
-    }
-    ```
-
     **[[⬆ regresar a la Tabla de Contenido]](#TOC)**
 
 
@@ -210,50 +192,27 @@ A manera general queremos:
     var fullName = 'Bob ' + this.lastName;
     ```
 
-  - Las cadenas de texto con una longitud mayor a 100 caracteres deben ser escritas en múltiples líneas usando concatenación.
-
-  - Cuando se crea programáticamente una cadena de texto, use Array#join en vez de concatenación. Sobretodo por IE: [jsPerf](http://jsperf.com/string-vs-array-concat/2).  
+  - Cuando se crea programáticamente una cadena de texto, use _template strings_ (``) en vez de
 
     ```javascript
-    var items;
-    var messages;
-    var length;
-    var i;
-
-    messages = [{
-      state: 'success',
-      message: 'This one worked.'
-    },{
-      state: 'success',
-      message: 'This one worked as well.'
-    },{
-      state: 'error',
-      message: 'This one did not work.'
-    }];
-
-    length = messages.length;
+    // mal
+    function sayHi(name) {
+      return 'How are you, ' + name + '?';
+    }
 
     // mal
-    function inbox(messages) {
-      items = '<ul>';
+    function sayHi(name) {
+      return ['How are you, ', name, '?'].join();
+    }
 
-      for (i = 0; i < length; i++) {
-        items += '<li>' + messages[i].message + '</li>';
-      }
-
-      return items + '</ul>';
+    // mal
+    function sayHi(name) {
+      return `How are you, ${ name }?`;
     }
 
     // bien
-    function inbox(messages) {
-      items = [];
-
-      for (i = 0; i < length; i++) {
-        // usa asignacion directa aqui porque estamos micro-optimizando
-        items[i] = '<li>' + messages[i].message + '</li>';
-      }
-
-      return '<ul>' + items.join('') + '</ul>';
+    function sayHi(name) {
+      return `How are you, ${name}?`;
     }
     ```
 
@@ -266,12 +225,12 @@ A manera general queremos:
 
     ```javascript
     // expresion de funcion anonima
-    var anonymous = function() {
+    const anonymous = function() {
       return true;
     };
 
     // expresion de funcion nombrada
-    var named = function named() {
+    const named = function named() {
       return true;
     };
 
@@ -281,12 +240,11 @@ A manera general queremos:
     })();
     ```
 
-  - Nunca declares una función en un bloque que no sea de función (if, while, etc). En vez de ello, asigna la función a una variable. Los navegadores te permitirán hacerlo pero todos ellos lo interpretarán de modo diferente, lo que es lamentable.
+  - Nunca declare una función en un bloque que no sea de función (if, while, etc). En vez de ello, asigna la función a una variable. Los navegadores te permitirán hacerlo pero todos ellos lo interpretarán de modo diferente, lo que es lamentable.
 
   - Nunca nombres a un parámetro como `arguments`, esto tendrá precedencia sobre el objeto `arguments` que es brindado en cada ámbito de función.
 
     **[[⬆ regresar a la Tabla de Contenido]](#TOC)**
-
 
 
 ## <a name='properties'>Propiedades</a>
@@ -294,22 +252,22 @@ A manera general queremos:
   - Usa la notación de punto `.` cuando accedas a las propiedades.
 
     ```javascript
-    var luke = {
+    const luke = {
       jedi: true,
       age: 28
     };
 
     // mal
-    var isJedi = luke['jedi'];
+    const isJedi = luke['jedi'];
 
     // bien
-    var isJedi = luke.jedi;
+    const isJedi = luke.jedi;
     ```
 
   - Usa la notación subscript `[]` cuando accedas a las propiedades con una variable.
 
     ```javascript
-    var luke = {
+    const luke = {
       jedi: true,
       age: 28
     };
@@ -318,7 +276,7 @@ A manera general queremos:
       return luke[prop];
     }
 
-    var isJedi = getProp('jedi');
+    const isJedi = getProp('jedi');
     ```
 
     **[[⬆ regresar a la Tabla de Contenido]](#TOC)**
@@ -326,24 +284,26 @@ A manera general queremos:
 
 ## <a name='variables'>Variables</a>
 
-  - Siempre usar `var` para declarar variables. No hacerlo resultará en variables globales. Debemos evitar contaminar el espacio global (global namespace).
+  - Siempre usar `const` o `let` para declarar variables. No hacerlo resultará en variables globales. Debemos evitar contaminar el espacio global (global namespace).
 
-  - Usar una declaración `var` por variable.
+  - Usar una declaración `const` o `let` por variable.
 
     ```javascript
-    var items = getItems();
-    var goSportsTeam = true;
-    var dragonball = 'z';
+    const items = getItems();
+    const goSportsTeam = true;
+    const dragonball = 'z';
     ```
+
+  - Agrupe todas sus declaraciones `const` y luego las declaraciones `let`.
 
   - Declarar a las variables sin asignación al final. Esto es útil cuando necesites asignar una variable luego dependiendo de una de las variables asignadas previamente.
 
     ```javascript
-    var items = getItems();
-    var goSportsTeam = true;
-    var dragonball;
-    var length;
-    var i;
+    let items = getItems();
+    let goSportsTeam = true;
+    let dragonball;
+    let length;
+    let i;
     ```
 
   - Asigna las variables al inicio de su ámbito. Esto ayuda a evitar inconvenientes con la declaración de variables y temas relacionados a 'hoisting'.
@@ -356,7 +316,7 @@ A manera general queremos:
 
       //..otras cosas..
 
-      var name = getName();
+      let name = getName();
 
       if (name === 'test') {
         return false;
@@ -367,7 +327,7 @@ A manera general queremos:
 
     // bien
     function() {
-      var name = getName();
+      let name = getName();
 
       test();
       console.log('doing stuff..');
@@ -383,7 +343,7 @@ A manera general queremos:
 
     // mal - llamada a funcion innecesaria
     function() {
-      var name = getName();
+      let name = getName();
 
       if (!arguments.length) {
         return false;
@@ -400,7 +360,7 @@ A manera general queremos:
         return false;
       }
 
-      var name = getName();
+      let name = getName();
       this.setFirstName(name);
 
       return true;
@@ -411,6 +371,8 @@ A manera general queremos:
 
 
 ## <a name='hoisting'>Hoisting</a>
+
+  **POR ACTUALIZAR**
 
   - Las declaraciones de variables son movidas a la parte superior de su ámbito, sin embargo su asignación no.
 
@@ -572,7 +534,7 @@ A manera general queremos:
       console.log('fetching type...');
 
       // set the default type to 'no type'
-      var type = this._type || 'no type';
+      const type = this._type || 'no type';
 
       return type;
     }
@@ -587,65 +549,67 @@ A manera general queremos:
   - Strings:
 
     ```javascript
-    //  => this.reviewScore = 9;
+    // => this.reviewScore = 9;
 
     // mal
-    var totalScore = this.reviewScore + '';
-
-    // bien
-    var totalScore = '' + this.reviewScore;
+    const totalScore = new String(this.reviewScore);
 
     // mal
-    var totalScore = '' + this.reviewScore + ' total score';
+    const totalScore = this.reviewScore + '';
+
+    // mal
+    const totalScore = this.reviewScore.toString();
 
     // bien
-    var totalScore = this.reviewScore + ' total score';
+    const totalScore = String(this.reviewScore);
     ```
 
   - Usa `parseInt` para números y siempre con la base numérica para el casting de tipo.
 
     ```javascript
-    var inputValue = '4';
+    const inputValue = '4';
 
     // mal
-    var val = new Number(inputValue);
+    const val = new Number(inputValue);
 
     // mal
-    var val = +inputValue;
+    const val = +inputValue;
 
     // mal
-    var val = inputValue >> 0;
+    const val = inputValue >> 0;
 
     // mal
-    var val = parseInt(inputValue);
+    const val = parseInt(inputValue);
 
     // bien
-    var val = Number(inputValue);
+    const val = Number(inputValue);
 
     // bien
-    var val = parseInt(inputValue, 10);
+    const val = parseInt(inputValue, 10);
     ```
 
   - Booleans:
 
     ```javascript
-    var age = 0;
+    const age = 0;
 
     // mal
-    var hasAge = new Boolean(age);
+    const hasAge = new Boolean(age);
 
     // bien
-    var hasAge = Boolean(age);
+    const hasAge = Boolean(age);
 
-    // bien
-    var hasAge = !!age;
+    // mejor
+    const hasAge = !!age;
     ```
 
     **[[⬆ regresar a la Tabla de Contenido]](#TOC)**
 
 ## <a name='accessors'>Funciones de Acceso</a>
 
-  - Funciones de acceso para las propiedades no son requeridas, pero s&iacute; se crean, usar  ```getVal()``` y ```setVal('hello')```. Ejem: `getAge()`, `setAge(25)`.
+  **POR ACTUALIZAR**
+
+  - Funciones de acceso para las propiedades no son requeridas, pero si se crean, usar  ```getVal()``` y ```setVal('hello')```. Ejem: `getAge()`, `setAge(25)`.
 
   - Si la propiedad es un booleano, usa ```isVal()``` o ```hasVal()```.
 
@@ -653,6 +617,8 @@ A manera general queremos:
 
 
 ## <a name='constructors'>Constructores</a>
+
+  **POR ACTUALIZAR**
 
   - Asigna métodos al objeto prototype, en vez de sobreescribir prototype con un nuevo objeto. La sobreescritura de prototype hace la herencia imposible: ¡reseteando prototype sobreescribirás la base!
 
@@ -695,6 +661,8 @@ A manera general queremos:
 
 ## <a name='events'>Eventos</a>
 
+  **POR ACTUALIZAR**
+
   - Cuando envíes paquetes de datos a los eventos (ya sea con eventos del DOM o algo propietario como los eventos de Backbone), pasa un mapa en vez de un valor directo. Esto permitirá a un próximo colaborador a agregar más datos al paquete de datos sin que tenga que encontrar o actualizar un handler para cada evento. Por ejemplo, en vez de:
 
     ```js
@@ -725,6 +693,8 @@ A manera general queremos:
 
 
 ## <a name='modules'>Módulos</a>
+
+  **POR ACTUALIZAR**
 
   - El módulo debe empezar con un `!`. Esto asegura que si un módulo mal formado olvide incluir al final un punto y coma, no hayan errores en producción cuando los scripts sean concatenados. [Explicación](https://github.com/airbnb/javascript/issues/44#issuecomment-13063933)
   - El archivo debe ser nombrado con camelCase, residir en un fólder con el mismo nombre, y corresponder al nombre de la función a exportar.
