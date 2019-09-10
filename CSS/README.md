@@ -330,17 +330,17 @@ Ordenamos parent selectos (inicia con &, tales como &.classname &oacute; &:hover
 ## Uso de whitespace
 
 #### indentación
-Indentamos con **4 espacios**, no tabs. Puede configurar su editor para que lo realice de manera autom&aacute;tica. Los espacios son la &uacute;nica forma de garantizar que el c&oacute;digo *renderea* igual en el entorno de cualquier persona.
+Indentamos con **2 espacios**, no tabs. Puede configurar su editor para que lo realice de manera autom&aacute;tica. Los espacios son la &uacute;nica forma de garantizar que el c&oacute;digo *renderea* igual en el entorno de cualquier persona.
 
 ```css
 // Mal
 selector {
-  propiedad: valor;
+    propiedad: valor;
 }
 
 // Bien
 selector {
-    propiedad: valor;
+  propiedad: valor;
 }
 ```
 
