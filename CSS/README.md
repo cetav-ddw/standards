@@ -28,7 +28,7 @@ El código *feo* y desordenado sienta un mal precedente, por el contrario, el c&
 
 A manera general queremos:
 
-* Indentar con **4** espacios, no tabs.
+* Indentar con **2** espacios, no tabs.
 * Uso significativo de espacio en blanco.
 * Ordenar alfabeticamente.
 * Uso de min&uacute;sculas y nombres en ingl&eacute;s.
